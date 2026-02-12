@@ -2,7 +2,7 @@
 
 ## Overview
 
-Local Sleep Monitor is designed with privacy as a core principle.
+Personal Sleep Lab is designed with privacy as a core principle.
 All data is intended to be processed and stored **locally on the user’s device**.
 
 The project does not collect, transmit, or share sleep data with external servers by default.
