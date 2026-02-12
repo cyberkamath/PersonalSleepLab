@@ -1,6 +1,6 @@
-# Local Sleep Monitor
+# Personal Sleep Lab
 
-Local Sleep Monitor is a project designed to help monitor sleep-related activity, including sleeping positions, snoring, breathing patterns, and movement frequency.
+Personal Sleep Lab is a project designed to help monitor sleep-related activity, including sleeping positions, snoring, breathing patterns, and movement frequency.
 
 The project is being developed in stages, with a Python-based backend at its core.
 
@@ -18,7 +18,7 @@ The project is being developed in stages, with a Python-based backend at its cor
 
 - Backend: Python
 
-- Frontend: To be developed (graphs, dashboards, and visualizations)
+- Frontend: To be developed (graphs, dashboards, and visualizations) potentially in React
 
 - Data Sources: Audio recordings, video recordings, motion data
 
