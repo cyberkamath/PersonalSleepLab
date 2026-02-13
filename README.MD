@@ -1,6 +1,6 @@
 # Personal Sleep Lab
 
-Personal Sleep Lab is a project designed to help monitor sleep-related activity, including sleeping positions, snoring, breathing patterns, and movement frequency.
+Personal Sleep Lab is a project designed to help monitor sleep-related activity, including sleeping positions, snoring, breathing patterns, and movement frequency in a local machine or local cloud. 
 
 The project is being developed in stages, with a Python-based backend at its core.
 
@@ -47,35 +47,17 @@ Track movement frequency
 
 Detect sleeping positions
 
-Analyze breathing patterns using video data
+Maybe Track Eye Movements if possible
 
 ### Stage 5: Frontend Upgrade
 
 Display video-based insights
 
-Combine audio and video analytics into a single dashboard
-
-## Future Ideas & Enhancements
-
-* Sleep quality scoring system
-
-* Detection of sleep apnea indicators
-
-* Night-to-night sleep comparison reports
-
-* Machine learning models for pattern recognition
-
-* Exportable sleep reports (PDF/CSV)
-
-* Smart alerts for abnormal breathing or excessive movement
-
-* Integration with wearable devices (optional)
-
-* Dark-mode friendly UI for nighttime review
+Combine audio and video analytics into a single dashboard with overlays
 
 ## Status
 
-🚧 Work in Progress — The project is currently under active development, starting with backend audio recording features.
+🚧 Work in Progress on Stage 1 at the moment — The project is currently under active development, starting with backend audio recording features.
 
 ## Security
 
