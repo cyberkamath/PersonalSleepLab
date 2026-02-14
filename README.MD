@@ -22,6 +22,19 @@ The project is being developed in stages, with a Python-based backend at its cor
 
 - Data Sources: Audio recordings, video recordings, motion data
 
+## What runs where
+
+### Recorder
+This runs on the capturing Raspberry Pi:
+- recorder module
+- collects audio/video
+- uploads data to server
+
+### Server
+This runs on the NAS:
+- server module
+- processes recordings, stores data, and serves API/dashboard
+
 ## Development Roadmap
 ### Stage 1 : Sound Recording and Storage
 
