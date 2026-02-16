@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.4.0">
+  <diagram name="Page-1" id="muUdRUN6vrfIbPbtK234">
+    <mxGraphModel dx="1234" dy="712" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#999191)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-2" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Router_128x128.png" value="" vertex="1">
+          <mxGeometry height="90" width="100" x="359" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-3" parent="1" style="image;html=1;image=img/lib/clip_art/computers/Server_Rack_128x128.png" value="" vertex="1">
+          <mxGeometry height="110" width="100" x="609" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-5" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Ip_Camera_128x128.png" value="" vertex="1">
+          <mxGeometry height="80" width="80" x="109" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Recorder&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="119" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Raspberry PI + Noir Camera&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="180" x="69" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-10" edge="1" parent="1" source="iWD6lPgLWn25rHAD-zg8-5" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;flowAnimation=1;shadow=1;" target="iWD6lPgLWn25rHAD-zg8-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="379" y="500" as="sourcePoint" />
+            <mxPoint x="309" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-12" edge="1" parent="1" source="iWD6lPgLWn25rHAD-zg8-2" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=2;flowAnimation=1;shadow=1;" target="iWD6lPgLWn25rHAD-zg8-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="259" y="370" as="sourcePoint" />
+            <mxPoint x="429" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Router / Switch&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="147" x="340" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Home Server&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="599" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Raspberry PI Cluster&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Working as a NAS&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="180" x="579" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="iWD6lPgLWn25rHAD-zg8-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Create a VLAN to isolate from external Network" vertex="1">
+          <mxGeometry height="30" width="140" x="339" y="440" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
