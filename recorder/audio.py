@@ -7,25 +7,30 @@ from dataclasses import dataclass
 from pathlib import Path
 from queue import Queue
 from threading import Thread
+import math
 
 
-queue = Queue()
+queue = Queue(maxsize=3)
+
 
 @dataclass
 class RecorderConfig:
     sample_rate: int = 16000 # Standard rate for recording Human voice or Snoring
-    duration: int = 12 # seconds
+    duration: int = 3600 # seconds
     channels: int = 1
     output_dir: Path = Path("recordings")
     assets_dir: Path = Path("assets")
     file_format: str = "flac"
     recording_started: str = "recording.mp3"
     recording_finished: str = "completed.mp3"
-    chunk_duration: int = 6
+    chunk_duration: int = 300 #5 minutes chunk
+    file_rotation_minutes: int = 15 
+
 
 def generate_filename(config : RecorderConfig) -> Path :
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     return config.output_dir / f"Sleep_sound_{timestamp}.{config.file_format}"
+
 
 def play_audio(audio_path: Path):
     try:
@@ -37,25 +42,43 @@ def play_audio(audio_path: Path):
 
 
 def writer_thread(config: RecorderConfig) :
+    chunks_per_file = math.ceil(
+        (config.file_rotation_minutes * 60) / config.chunk_duration
+    )
+    file_chunk_count = 0
+
     output_file =  generate_filename(config)
-    with sf.SoundFile(
+    f = sf.SoundFile(
         output_file,
         mode='w',
         samplerate=config.sample_rate,
         channels=config.channels,
         format=config.file_format
-    ) as f:
+    )
         
-        while True:
-            chunk = queue.get()
+    while True:
+        chunk = queue.get()
 
-            if chunk is None:
-                queue.task_done()
-                break
-
-            f.write(chunk)
+        if chunk is None:
             queue.task_done()
+            break
 
+        f.write(chunk)
+        file_chunk_count += 1
+        queue.task_done()
+
+        if file_chunk_count >= chunks_per_file:
+            f.close()
+            output_file = generate_filename(config)
+            f = sf.SoundFile(
+                output_file,
+                mode='w',
+                samplerate=config.sample_rate,
+                channels=config.channels,
+                format=config.file_format
+                )
+            file_chunk_count = 0
+    f.close()
     finish_time = datetime.now()
     print(f"Recording finished at {finish_time}")
     play_audio(config.assets_dir / config.recording_finished)
@@ -87,6 +110,7 @@ def record_audio(config: RecorderConfig):
     queue.put(None)
     queue.join()
     writer.join()
+
 
 if __name__ == "__main__":
     config = RecorderConfig()
