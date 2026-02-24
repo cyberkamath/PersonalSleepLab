@@ -5,18 +5,23 @@ import soundfile as sf
 from datetime import datetime
 from dataclasses import dataclass
 from pathlib import Path
+from queue import Queue
+from threading import Thread
 
+
+queue = Queue()
 
 @dataclass
 class RecorderConfig:
     sample_rate: int = 16000 # Standard rate for recording Human voice or Snoring
-    duration: int = 10 # seconds
+    duration: int = 12 # seconds
     channels: int = 1
     output_dir: Path = Path("recordings")
     assets_dir: Path = Path("assets")
-    file_format: str = "wav"
+    file_format: str = "flac"
     recording_started: str = "recording.mp3"
     recording_finished: str = "completed.mp3"
+    chunk_duration: int = 6
 
 def generate_filename(config : RecorderConfig) -> Path :
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -31,6 +36,31 @@ def play_audio(audio_path: Path):
         print(f"Could not play audio at {audio_path}: {e} ")
 
 
+def writer_thread(config: RecorderConfig) :
+    output_file =  generate_filename(config)
+    with sf.SoundFile(
+        output_file,
+        mode='w',
+        samplerate=config.sample_rate,
+        channels=config.channels,
+        format=config.file_format
+    ) as f:
+        
+        while True:
+            chunk = queue.get()
+
+            if chunk is None:
+                queue.task_done()
+                break
+
+            f.write(chunk)
+            queue.task_done()
+
+    finish_time = datetime.now()
+    print(f"Recording finished at {finish_time}")
+    play_audio(config.assets_dir / config.recording_finished)
+
+
 def record_audio(config: RecorderConfig):
     
     config.output_dir.mkdir(exist_ok=True)
@@ -38,21 +68,25 @@ def record_audio(config: RecorderConfig):
     starting_time = datetime.now()
     print(f"Recording Started at {starting_time}")
     play_audio(config.assets_dir / config.recording_started)
+    total_chunks = int( config.duration / config.chunk_duration )
 
-    recorded_audio = sd.rec(
-        int(config.duration * config.sample_rate),
-        samplerate=config.sample_rate,
-        channels=config.channels,
-        dtype='float32'
-    )
-    sd.wait()
+    writer = Thread(target=writer_thread, args=(config,))
+    writer.start()
 
-    output_file =  generate_filename(config)
-    sf.write(output_file, recorded_audio, config.sample_rate)
+    for i in range(total_chunks):
+        print(f"Recording Chunk number {i}")
+        recorded_audio = sd.rec(
+            int(config.chunk_duration * config.sample_rate),
+            samplerate=config.sample_rate,
+            channels=config.channels,
+            dtype='float32'
+        )
+        sd.wait()
+        queue.put(recorded_audio)
 
-    finish_time = datetime.now()
-    print(f"Recording finished at {finish_time}")
-    play_audio(config.assets_dir / config.recording_finished)
+    queue.put(None)
+    queue.join()
+    writer.join()
 
 if __name__ == "__main__":
     config = RecorderConfig()
