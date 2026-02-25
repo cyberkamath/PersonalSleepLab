@@ -46,10 +46,11 @@ def writer_thread(audio_config: AudioRecorderConfig, audio_queue: Queue) :
 
         if _should_rotate(file_chunk_count , chunks_per_file):
             f.close()
-            f = _open_new_file(audio_config)
+            f = None
             file_chunk_count = 0
 
-    f.close()
+    if f is not None:
+        f.close()
     finish_time = datetime.now()
     print(f"Recording finished at {finish_time}")
     play_audio(audio_config.assets_dir / audio_config.recording_finished)
