@@ -70,7 +70,9 @@ Combine audio and video analytics into a single dashboard with overlays
 
 ## Status
 
-🚧 Work in Progress on Stage 1 at the moment — The project is currently under active development, starting with backend audio recording features.
+🚧 Stage 1 : Recording audio in Multiple chunks per day and storing them locally is completed.
+            Tests cases will be added soon and will add feature to Interrupt the recording.
+🚧 Stage 2 : Audio Analysis is being activley worked upon using Librosa Library to Generate Amplitude Peaks and Detect Snoring.
 
 ## Security
 
